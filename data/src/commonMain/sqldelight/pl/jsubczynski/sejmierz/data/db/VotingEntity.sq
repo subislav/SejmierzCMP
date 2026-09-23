@@ -1,0 +1,52 @@
+-- Local cache of voting summaries. The online-first flow writes here off the hot
+-- path; the offline flow reads exclusively from here. Primary key is
+-- (term, sitting, votingNumber) so a voting is uniquely addressable.
+
+CREATE TABLE votingEntity (
+    term INTEGER NOT NULL,
+    sitting INTEGER NOT NULL,
+    votingNumber INTEGER NOT NULL,
+    sittingDay INTEGER,
+    date TEXT,
+    title TEXT,
+    topic TEXT,
+    description TEXT,
+    kind TEXT,
+    majorityType TEXT,
+    yes INTEGER NOT NULL,
+    no INTEGER NOT NULL,
+    abstain INTEGER NOT NULL,
+    notParticipating INTEGER NOT NULL,
+    totalVoted INTEGER NOT NULL,
+    PRIMARY KEY (term, sitting, votingNumber)
+);
+
+CREATE INDEX votingEntity_term ON votingEntity(term);
+
+selectPage:
+SELECT *
+FROM votingEntity
+WHERE term = :term
+ORDER BY sitting ASC, votingNumber ASC
+LIMIT :limit OFFSET :offset;
+
+selectById:
+SELECT *
+FROM votingEntity
+WHERE term = :term AND sitting = :sitting AND votingNumber = :votingNumber;
+
+countByTerm:
+SELECT COUNT(*)
+FROM votingEntity
+WHERE term = :term;
+
+-- Single-row upsert used inside a transaction for bulk inserts.
+upsert:
+INSERT OR REPLACE INTO votingEntity(
+    term, sitting, votingNumber, sittingDay, date, title, topic, description,
+    kind, majorityType, yes, no, abstain, notParticipating, totalVoted
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteByTerm:
+DELETE FROM votingEntity WHERE term = :term;

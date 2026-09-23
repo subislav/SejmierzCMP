@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base theme; the Compose UI applies the real Material3 colors. A
+         Material3 DayNight parent avoids requiring AppCompat. -->
+    <style name="Theme.Sejmierz" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

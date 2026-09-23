@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mps_title">Members of Parliament</string>
+    <string name="mp_detail_title">MP profile</string>
+    <string name="benchmark_title">Benchmarks</string>
+    <string name="tab_telemetry">Telemetry</string>
+    <string name="settings_menu">Settings</string>
+
+    <string name="action_retry">Retry</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_back">Back</string>
+    <string name="action_load_more">Load more</string>
+
+    <string name="mode_online">Online (network)</string>
+    <string name="mode_offline">Offline (database)</string>
+    <string name="mode_label">Data source</string>
+
+    <string name="empty_mps">No MPs to show.</string>
+
+    <string name="error_network">No connection. Check your network and try again.</string>
+    <string name="error_http">Server error (%1$d).</string>
+    <string name="error_serialization">Could not read the server response.</string>
+    <string name="error_not_cached">Nothing cached yet. Switch to Online to fetch data first.</string>
+    <string name="error_empty">No data available.</string>
+    <string name="error_unknown">Something went wrong.</string>
+
+    <string name="mp_club">Club: %1$s</string>
+    <string name="mp_district">District: %1$s</string>
+    <string name="mp_profession">Profession: %1$s</string>
+    <string name="mp_votes">Votes received: %1$d</string>
+    <string name="mp_inactive">Mandate inactive</string>
+    <string name="mp_section_basic">Basic information</string>
+    <string name="mp_section_personal">Personal data</string>
+    <string name="mp_label_club">Club</string>
+    <string name="mp_label_district">Electoral district</string>
+    <string name="mp_label_district_num">District number</string>
+    <string name="mp_label_voivodeship">Voivodeship</string>
+    <string name="mp_label_votes">Votes</string>
+    <string name="mp_label_profession">Profession</string>
+    <string name="mp_label_education">Education</string>
+    <string name="mp_label_birth_date">Date of birth</string>
+    <string name="mp_label_birth_location">Place of birth</string>
+    <string name="mp_label_email">E-mail</string>
+
+    <string name="votings_title">Votings</string>
+    <string name="voting_detail_title">Voting detail</string>
+    <string name="empty_votings">No votings to show.</string>
+    <string name="voting_fallback_title">Sitting %1$d · voting %2$d</string>
+    <string name="voting_tally">For: %1$d · Against: %2$d · Abstained: %3$d</string>
+    <string name="voting_kind">Kind: %1$s</string>
+    <string name="voting_majority">Majority: %1$s</string>
+    <string name="voting_total_voted">Total voted: %1$d</string>
+    <string name="voting_club_breakdown">Breakdown by club</string>
+    <string name="voting_no_club_breakdown">Per-club breakdown is available online only.</string>
+    <string name="voting_club_tally">For %1$d · Against %2$d · Abstained %3$d · Absent %4$d</string>
+
+    <string name="clubs_title">Clubs</string>
+    <string name="club_detail_title">Club detail</string>
+    <string name="empty_clubs">No clubs to show.</string>
+    <string name="club_members">Members: %1$d</string>
+    <string name="club_id">Code: %1$s</string>
+    <string name="club_email">Email: %1$s</string>
+    <string name="club_phone">Phone: %1$s</string>
+    <string name="club_fax">Fax: %1$s</string>
+    <string name="club_members_header">Members</string>
+    <string name="club_no_members">The member roster is available online only.</string>
+
+    <string name="benchmark_iterations">Total iterations</string>
+    <string name="benchmark_warmup">Warmup (discarded)</string>
+    <string name="benchmark_export_csv">Export CSV</string>
+    <string name="benchmark_clear">Clear</string>
+    <string name="benchmark_samples">%1$d samples</string>
+    <string name="benchmark_exported">Exported to: %1$s</string>
+    <string name="benchmark_no_data">No measurements yet. Browse the app to collect metrics.</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_data_mode">Global Data Source Mode</string>
+    <string name="settings_mode_online">Online (Fetches from Sejm API)</string>
+    <string name="settings_mode_offline">Offline (Uses local SQLite cache)</string>
+    <string name="settings_language">Application Language</string>
+</resources>

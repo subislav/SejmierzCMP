@@ -1,0 +1,52 @@
+-- Local cache of MPs. The online-first flow writes here off the hot path; the
+-- offline flow reads exclusively from here. Primary key is (term, id) so future
+-- multi-term support is a non-breaking change.
+
+CREATE TABLE mpEntity (
+    term INTEGER NOT NULL,
+    id INTEGER NOT NULL,
+    firstLastName TEXT NOT NULL,
+    club TEXT,
+    active INTEGER NOT NULL,
+    districtName TEXT,
+    districtNum INTEGER,
+    voivodeship TEXT,
+    profession TEXT,
+    educationLevel TEXT,
+    email TEXT,
+    numberOfVotes INTEGER,
+    birthDate TEXT,
+    birthLocation TEXT,
+    PRIMARY KEY (term, id)
+);
+
+CREATE INDEX mpEntity_term ON mpEntity(term);
+
+selectPage:
+SELECT *
+FROM mpEntity
+WHERE term = :term
+ORDER BY firstLastName ASC
+LIMIT :limit OFFSET :offset;
+
+selectById:
+SELECT *
+FROM mpEntity
+WHERE term = :term AND id = :id;
+
+countByTerm:
+SELECT COUNT(*)
+FROM mpEntity
+WHERE term = :term;
+
+-- Single-row upsert used inside a transaction for bulk inserts.
+upsert:
+INSERT OR REPLACE INTO mpEntity(
+    term, id, firstLastName, club, active, districtName, districtNum,
+    voivodeship, profession, educationLevel, email, numberOfVotes,
+    birthDate, birthLocation
+)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteByTerm:
+DELETE FROM mpEntity WHERE term = :term;

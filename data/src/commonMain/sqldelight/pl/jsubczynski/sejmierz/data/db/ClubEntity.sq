@@ -1,0 +1,43 @@
+-- Local cache of club summaries. The online-first flow writes here off the hot
+-- path; the offline flow reads exclusively from here. Primary key is (term, id)
+-- where id is the short club code (e.g. "KO", "PiS").
+
+CREATE TABLE clubEntity (
+    term INTEGER NOT NULL,
+    id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    membersCount INTEGER NOT NULL,
+    email TEXT,
+    phone TEXT,
+    fax TEXT,
+    PRIMARY KEY (term, id)
+);
+
+CREATE INDEX clubEntity_term ON clubEntity(term);
+
+selectPage:
+SELECT *
+FROM clubEntity
+WHERE term = :term
+ORDER BY name ASC
+LIMIT :limit OFFSET :offset;
+
+selectById:
+SELECT *
+FROM clubEntity
+WHERE term = :term AND id = :id;
+
+countByTerm:
+SELECT COUNT(*)
+FROM clubEntity
+WHERE term = :term;
+
+-- Single-row upsert used inside a transaction for bulk inserts.
+upsert:
+INSERT OR REPLACE INTO clubEntity(
+    term, id, name, membersCount, email, phone, fax
+)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+deleteByTerm:
+DELETE FROM clubEntity WHERE term = :term;

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mps_title">Posłowie</string>
+    <string name="mp_detail_title">Profil posła</string>
+    <string name="benchmark_title">Pomiary</string>
+    <string name="tab_telemetry">Telemetria</string>
+    <string name="settings_menu">Ustawienia</string>
+
+    <string name="action_retry">Ponów</string>
+    <string name="action_refresh">Odśwież</string>
+    <string name="action_back">Wstecz</string>
+    <string name="action_load_more">Załaduj więcej</string>
+
+    <string name="mode_online">Online (sieć)</string>
+    <string name="mode_offline">Offline (baza danych)</string>
+    <string name="mode_label">Źródło danych</string>
+
+    <string name="empty_mps">Brak posłów do wyświetlenia.</string>
+
+    <string name="error_network">Brak połączenia. Sprawdź sieć i spróbuj ponownie.</string>
+    <string name="error_http">Błąd serwera (%1$d).</string>
+    <string name="error_serialization">Nie udało się odczytać odpowiedzi serwera.</string>
+    <string name="error_not_cached">Brak danych w pamięci. Przełącz na tryb Online, aby je pobrać.</string>
+    <string name="error_empty">Brak dostępnych danych.</string>
+    <string name="error_unknown">Coś poszło nie tak.</string>
+
+    <string name="mp_club">Klub: %1$s</string>
+    <string name="mp_district">Okręg: %1$s</string>
+    <string name="mp_profession">Zawód: %1$s</string>
+    <string name="mp_votes">Liczba głosów: %1$d</string>
+    <string name="mp_inactive">Mandat nieaktywny</string>
+    <string name="mp_section_basic">Informacje podstawowe</string>
+    <string name="mp_section_personal">Dane personalne</string>
+    <string name="mp_label_club">Klub</string>
+    <string name="mp_label_district">Okręg wyborczy</string>
+    <string name="mp_label_district_num">Numer okręgu</string>
+    <string name="mp_label_voivodeship">Województwo</string>
+    <string name="mp_label_votes">Liczba głosów</string>
+    <string name="mp_label_profession">Zawód</string>
+    <string name="mp_label_education">Wykształcenie</string>
+    <string name="mp_label_birth_date">Data urodzenia</string>
+    <string name="mp_label_birth_location">Miejsce urodzenia</string>
+    <string name="mp_label_email">E-mail</string>
+
+    <string name="votings_title">Głosowania</string>
+    <string name="voting_detail_title">Szczegóły głosowania</string>
+    <string name="empty_votings">Brak głosowań do wyświetlenia.</string>
+    <string name="voting_fallback_title">Posiedzenie %1$d · głosowanie %2$d</string>
+    <string name="voting_tally">Za: %1$d · Przeciw: %2$d · Wstrzymało się: %3$d</string>
+    <string name="voting_kind">Rodzaj: %1$s</string>
+    <string name="voting_majority">Większość: %1$s</string>
+    <string name="voting_total_voted">Głosujących łącznie: %1$d</string>
+    <string name="voting_club_breakdown">Podział wg klubów</string>
+    <string name="voting_no_club_breakdown">Podział wg klubów jest dostępny tylko w trybie online.</string>
+    <string name="voting_club_tally">Za %1$d · Przeciw %2$d · Wstrzym. %3$d · Nieobecni %4$d</string>
+
+    <string name="clubs_title">Kluby</string>
+    <string name="club_detail_title">Szczegóły klubu</string>
+    <string name="empty_clubs">Brak klubów do wyświetlenia.</string>
+    <string name="club_members">Liczba członków: %1$d</string>
+    <string name="club_id">Kod: %1$s</string>
+    <string name="club_email">E-mail: %1$s</string>
+    <string name="club_phone">Telefon: %1$s</string>
+    <string name="club_fax">Faks: %1$s</string>
+    <string name="club_members_header">Członkowie</string>
+    <string name="club_no_members">Lista członków jest dostępna tylko w trybie online.</string>
+
+    <string name="benchmark_iterations">Liczba iteracji</string>
+    <string name="benchmark_warmup">Rozgrzewka (odrzucana)</string>
+    <string name="benchmark_export_csv">Eksport CSV</string>
+    <string name="benchmark_clear">Wyczyść</string>
+    <string name="benchmark_samples">%1$d próbek</string>
+    <string name="benchmark_exported">Wyeksportowano do: %1$s</string>
+    <string name="benchmark_no_data">Brak pomiarów. Przeglądaj aplikację, aby je zebrać.</string>
+
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_back">Wstecz</string>
+    <string name="settings_data_mode">Globalny tryb źródła danych</string>
+    <string name="settings_mode_online">Online (Pobieranie z API Sejmu)</string>
+    <string name="settings_mode_offline">Offline (Lokalna pamięć podręczna cache)</string>
+    <string name="settings_language">Język aplikacji</string>
+</resources>
