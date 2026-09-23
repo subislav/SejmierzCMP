@@ -1,6 +1,7 @@
 package pl.jsubczynski.sejmierz.ios.benchmark
 
 import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.UIntVar
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
@@ -8,10 +9,11 @@ import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.sizeOf
 import kotlinx.cinterop.value
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
+import platform.Foundation.NSFileManager
 import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSString
+import platform.Foundation.NSUTF8StringEncoding
 import platform.Foundation.writeToFile
 import platform.UIKit.UIDevice
 import platform.darwin.DISPATCH_TIME_NOW
@@ -23,7 +25,6 @@ import platform.darwin.dispatch_time
 import platform.darwin.mach_msg_type_number_tVar
 import platform.darwin.mach_task_basic_info
 import platform.darwin.mach_task_self_
-import platform.darwin.natural_t
 import platform.darwin.task_info
 import platform.posix.CLOCKS_PER_SEC
 import platform.posix.clock
@@ -51,7 +52,7 @@ class IOSMemorySampler : MemorySampler {
     override fun usedMemoryBytes(): Long = memScoped {
         val info = alloc<mach_task_basic_info>()
         val count = alloc<mach_msg_type_number_tVar>()
-        count.value = (sizeOf<mach_task_basic_info>() / sizeOf<natural_t>()).toUInt()
+        count.value = (sizeOf<mach_task_basic_info>() / sizeOf<UIntVar>()).toUInt()
         val kerr = task_info(
             mach_task_self_,
             MACH_TASK_BASIC_INFO.toUInt(),
@@ -242,11 +243,25 @@ class IOSCpuSampler(
 }
 
 class IOSBenchmarkExporter : BenchmarkExporter {
+    @OptIn(ExperimentalForeignApi::class)
     override suspend fun export(fileName: String, content: String): String =
-        withContext(Dispatchers.IO) {
-            val path = NSHomeDirectory() + "/Documents/benchmark-exports/$fileName"
+        withContext(Dispatchers.Default) {
+            val dir = NSHomeDirectory() + "/Documents/benchmark-exports"
+            NSFileManager.defaultManager.createDirectoryAtPath(
+                path = dir,
+                withIntermediateDirectories = true,
+                attributes = null,
+                error = null,
+            )
+            val path = "$dir/$fileName"
             @Suppress("CAST_NEVER_SUCCEEDS")
-            (content as NSString).writeToFile(path, atomically = true, encoding = 4u, error = null)
+            val wrote = (content as NSString).writeToFile(
+                path,
+                atomically = true,
+                encoding = NSUTF8StringEncoding,
+                error = null,
+            )
+            if (!wrote) error("Failed to write CSV to $path")
             path
         }
 }

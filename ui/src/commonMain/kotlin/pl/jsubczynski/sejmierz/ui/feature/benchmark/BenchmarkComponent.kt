@@ -13,6 +13,7 @@ import pl.jsubczynski.sejmierz.domain.benchmark.BenchmarkExporter
 import pl.jsubczynski.sejmierz.domain.benchmark.Metric
 import pl.jsubczynski.sejmierz.domain.benchmark.MetricCsvExporter
 import pl.jsubczynski.sejmierz.domain.benchmark.MetricRepository
+import pl.jsubczynski.sejmierz.domain.benchmark.currentTimeMillis
 import pl.jsubczynski.sejmierz.domain.benchmark.stats.BenchmarkStatistics
 import pl.jsubczynski.sejmierz.domain.benchmark.stats.summarize
 import pl.jsubczynski.sejmierz.domain.repository.SettingsRepository
@@ -68,7 +69,7 @@ class DefaultBenchmarkComponent(
     override fun exportCsv() {
         scope.launch {
             val csv = MetricCsvExporter.toCsv(metrics.snapshot())
-            val fileName = "sejmierz-benchmarks-${System.currentTimeMillis()}.csv"
+            val fileName = "sejmierz-benchmarks-${currentTimeMillis()}.csv"
             val path = exporter.export(fileName, csv)
             exportPath.update { path }
         }

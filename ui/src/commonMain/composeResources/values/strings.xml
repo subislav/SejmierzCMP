@@ -79,4 +79,6 @@
     <string name="settings_mode_online">Online (Fetches from Sejm API)</string>
     <string name="settings_mode_offline">Offline (Uses local SQLite cache)</string>
     <string name="settings_language">Application Language</string>
+    <string name="language_en">English</string>
+    <string name="language_pl">Polish</string>
 </resources>

@@ -37,6 +37,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import pl.jsubczynski.sejmierz.domain.benchmark.BenchmarkContext
 import pl.jsubczynski.sejmierz.domain.repository.SettingsRepository
+import pl.jsubczynski.sejmierz.ui.core.AppLocaleEnvironment
 import pl.jsubczynski.sejmierz.ui.core.applyAppLanguage
 import pl.jsubczynski.sejmierz.ui.core.benchmark.LocalBenchmarkContext
 import pl.jsubczynski.sejmierz.ui.feature.benchmark.BenchmarkScreen
@@ -67,6 +68,26 @@ fun RootContent(
         applyAppLanguage(language.code)
     }
 
+    AppLocaleEnvironment(languageCode = language.code) {
+        RootShell(
+            component = component,
+            selectedTab = selectedTab,
+            isSettingsOpen = isSettingsOpen,
+            benchmarkContext = benchmarkContext,
+            modifier = modifier,
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RootShell(
+    component: RootComponent,
+    selectedTab: AppTab,
+    isSettingsOpen: Boolean,
+    benchmarkContext: BenchmarkContext,
+    modifier: Modifier = Modifier,
+) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
     LaunchedEffect(isSettingsOpen) {

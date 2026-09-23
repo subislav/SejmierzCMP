@@ -21,7 +21,7 @@ class MpLocalDataSource(
             name = "db.read.page",
             tags = mapOf(MetricTag.SLICE to "MPs"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectPage(
                     term = term.toLong(),
                     limit = limit.toLong(),
@@ -36,14 +36,14 @@ class MpLocalDataSource(
             name = "db.read.byId",
             tags = mapOf(MetricTag.SLICE to "MPs"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectById(term = term.toLong(), id = id.toLong())
                     .executeAsOneOrNull()
                     ?.toDomain()
             }
         }
 
-    suspend fun count(term: Int): Long = withContext(Dispatchers.IO) {
+    suspend fun count(term: Int): Long = withContext(Dispatchers.Default) {
         queries.countByTerm(term.toLong()).executeAsOne()
     }
 
@@ -57,7 +57,7 @@ class MpLocalDataSource(
                 "rows" to mps.size.toString(),
             ),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.transaction {
                     mps.forEach { mp ->
                         queries.upsert(

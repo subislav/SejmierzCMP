@@ -21,7 +21,7 @@ class VotingLocalDataSource(
             name = "db.read.page",
             tags = mapOf(MetricTag.SLICE to "Votings"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectPage(
                     term = term.toLong(),
                     limit = limit.toLong(),
@@ -36,7 +36,7 @@ class VotingLocalDataSource(
             name = "db.read.byId",
             tags = mapOf(MetricTag.SLICE to "Votings"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectById(
                     term = term.toLong(),
                     sitting = sitting.toLong(),
@@ -45,7 +45,7 @@ class VotingLocalDataSource(
             }
         }
 
-    suspend fun count(term: Int): Long = withContext(Dispatchers.IO) {
+    suspend fun count(term: Int): Long = withContext(Dispatchers.Default) {
         queries.countByTerm(term.toLong()).executeAsOne()
     }
 
@@ -59,7 +59,7 @@ class VotingLocalDataSource(
                 "rows" to votings.size.toString(),
             ),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.transaction {
                     votings.forEach { voting ->
                         queries.upsert(

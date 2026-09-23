@@ -21,7 +21,7 @@ class ClubLocalDataSource(
             name = "db.read.page",
             tags = mapOf(MetricTag.SLICE to "Clubs"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectPage(
                     term = term.toLong(),
                     limit = limit.toLong(),
@@ -36,14 +36,14 @@ class ClubLocalDataSource(
             name = "db.read.byId",
             tags = mapOf(MetricTag.SLICE to "Clubs"),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.selectById(term = term.toLong(), id = id)
                     .executeAsOneOrNull()
                     ?.toDomain()
             }
         }
 
-    suspend fun count(term: Int): Long = withContext(Dispatchers.IO) {
+    suspend fun count(term: Int): Long = withContext(Dispatchers.Default) {
         queries.countByTerm(term.toLong()).executeAsOne()
     }
 
@@ -57,7 +57,7 @@ class ClubLocalDataSource(
                 "rows" to clubs.size.toString(),
             ),
         ) {
-            withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
                 queries.transaction {
                     clubs.forEach { club ->
                         queries.upsert(

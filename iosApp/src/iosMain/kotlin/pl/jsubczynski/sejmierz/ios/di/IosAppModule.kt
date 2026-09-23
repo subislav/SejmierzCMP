@@ -6,7 +6,6 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -25,7 +24,7 @@ import pl.jsubczynski.sejmierz.ios.benchmark.IOSMemorySampler
 import pl.jsubczynski.sejmierz.ios.benchmark.IOSRunContextProvider
 
 val iosAppModule: Module = module {
-    single<CoroutineScope> { CoroutineScope(SupervisorJob() + Dispatchers.IO) }
+    single<CoroutineScope> { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
 
     single<HttpClientEngine> { Darwin.create() }
 

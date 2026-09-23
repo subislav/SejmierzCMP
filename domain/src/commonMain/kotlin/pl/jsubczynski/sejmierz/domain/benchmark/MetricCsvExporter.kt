@@ -7,7 +7,7 @@ object MetricCsvExporter {
     fun toCsv(metrics: List<Metric>): String {
         if (metrics.isEmpty()) return "name,category,value,unit,timestampMs\n"
 
-        val tagKeys = metrics.flatMap { it.tags.keys }.toSortedSet()
+        val tagKeys = metrics.flatMap { it.tags.keys }.distinct().sorted()
         val header = buildList {
             add("name")
             add("category")

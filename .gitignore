@@ -1,27 +1,38 @@
 # Gradle
 .gradle/
+.gradle-user-home/
+.icon-work/
 !gradle/wrapper/gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.properties
 
-# Build Folders
+# Build output
 build/
 */build/
+iosApp/build/
+DerivedData/
 
-# Local configuration
+# Local / machine-specific
 local.properties
+*.log
+.xcodebuild.log
+.gradle-build.log
+.local-m2/
 
-# IDE and compilation caches
+# IDE
 .idea/
 .kotlin/
 *.iml
+*.xcuserstate
+xcuserdata/
 
-# OS generated files
+# OS
 .DS_Store
 Thumbs.db
 
-# iOS Specific (Xcode / Cocoapods)
-iosApp/build/
+# iOS / CocoaPods leftovers
 iosApp/Pods/
 iosApp/.symlinks/
 iosApp/**/*.xcuserdatad/
 iosApp/**/*.xcworkspace/xcuserdata/
+iosApp/iosApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+iosApp/iosApp.xcodeproj/xcuserdata/

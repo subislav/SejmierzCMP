@@ -95,7 +95,12 @@ fun SettingsScreen(
                             count = AppLanguage.entries.size,
                         ),
                     ) {
-                        Text(text = language.name)
+                        Text(
+                            text = when (language) {
+                                AppLanguage.EN -> stringResource(Res.string.language_en)
+                                AppLanguage.PL -> stringResource(Res.string.language_pl)
+                            },
+                        )
                     }
                 }
             }

@@ -4,8 +4,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.window.ComposeUIViewController
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
+import org.koin.mp.KoinPlatform
 import pl.jsubczynski.sejmierz.data.di.dataModule
 import pl.jsubczynski.sejmierz.domain.benchmark.DisplayTracker
 import pl.jsubczynski.sejmierz.domain.di.domainModule
@@ -17,7 +17,7 @@ import pl.jsubczynski.sejmierz.ui.navigation.RootContent
 import platform.UIKit.UIViewController
 
 private fun ensureKoin() {
-    if (GlobalContext.getOrNull() != null) return
+    if (KoinPlatform.getKoinOrNull() != null) return
     startKoin {
         modules(domainModule, dataModule, iosAppModule)
     }
@@ -25,7 +25,7 @@ private fun ensureKoin() {
 
 fun MainViewController(): UIViewController {
     ensureKoin()
-    val koin = GlobalContext.get()
+    val koin = KoinPlatform.getKoin()
     val displayTracker = koin.get<DisplayTracker>()
 
     val lifecycle = LifecycleRegistry()

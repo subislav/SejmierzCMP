@@ -79,4 +79,6 @@
     <string name="settings_mode_online">Online (Pobieranie z API Sejmu)</string>
     <string name="settings_mode_offline">Offline (Lokalna pamięć podręczna cache)</string>
     <string name="settings_language">Język aplikacji</string>
+    <string name="language_en">English</string>
+    <string name="language_pl">Polski</string>
 </resources>
